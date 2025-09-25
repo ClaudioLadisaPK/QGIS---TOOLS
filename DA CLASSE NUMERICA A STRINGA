@@ -1,0 +1,4 @@
+CASE 
+    WHEN "DN" = 1 THEN 'Forest'
+    ELSE "lcc"
+END
