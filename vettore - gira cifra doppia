@@ -1,0 +1,7 @@
+CASE
+  WHEN "DN" IS NULL THEN NULL
+  WHEN "DN" = 254 THEN 254
+  WHEN "DN" >= 10 AND "DN" <= 99
+       THEN ( ("DN" % 10) * 10 ) + floor("DN"/10)
+  ELSE "DN"
+END
