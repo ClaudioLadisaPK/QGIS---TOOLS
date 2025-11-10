@@ -1,4 +1,4 @@
 CASE 
-    WHEN "DN" = 1 THEN 'Forest'
+    WHEN "ucs" = 1 THEN 'Forest'
     ELSE "lcc"
 END
