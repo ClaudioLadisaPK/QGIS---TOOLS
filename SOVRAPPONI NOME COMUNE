@@ -1,9 +1,4 @@
 CASE
-  WHEN regexp_match(to_string("ucs"), '^[0-9]{2}$')
-  THEN aggregate(
-         'Comuni_4326',
-         'first_value',
-         "COMUNE",
-         filter := intersects($geometry, geometry(@parent))
-       )
+  WHEN regexp_match(trim(to_string("ucs")), '^[0-9]{2}$')
+  THEN array_first( overlay_intersects('Comuni_4326', "COMUNE") )
 END
