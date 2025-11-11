@@ -1,0 +1,37 @@
+CASE
+  WHEN "ucs" = 254 THEN 'No data'
+
+  WHEN "ucs" = 1 THEN 'Forest'
+  WHEN "ucs" = 2 THEN 'Grassland'
+  WHEN "ucs" = 3 THEN 'Cropland'
+  WHEN "ucs" = 4 THEN 'Wetlands'
+  WHEN "ucs" = 5 THEN 'Settlements'
+  WHEN "ucs" = 6 THEN 'Other'
+  WHEN "ucs" = 7 THEN 'Shrubland'
+
+  WHEN "ucs" BETWEEN 11 AND 77
+       AND floor("ucs"/10) BETWEEN 1 AND 7
+       AND ("ucs" - 10*floor("ucs"/10)) BETWEEN 1 AND 7
+  THEN
+    (CASE
+      WHEN floor("ucs"/10) = 1 THEN 'Forest'
+      WHEN floor("ucs"/10) = 2 THEN 'Grassland'
+      WHEN floor("ucs"/10) = 3 THEN 'Cropland'
+      WHEN floor("ucs"/10) = 4 THEN 'Wetlands'
+      WHEN floor("ucs"/10) = 5 THEN 'Settlements'
+      WHEN floor("ucs"/10) = 6 THEN 'Other'
+      WHEN floor("ucs"/10) = 7 THEN 'Shrubland'
+     END)
+    || ' to ' ||
+    (CASE
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 1 THEN 'Forest'
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 2 THEN 'Grassland'
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 3 THEN 'Cropland'
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 4 THEN 'Wetlands'
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 5 THEN 'Settlements'
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 6 THEN 'Other'
+      WHEN ("ucs" - 10*floor("ucs"/10)) = 7 THEN 'Shrubland'
+     END)
+
+  ELSE 'Unknown'
+END
